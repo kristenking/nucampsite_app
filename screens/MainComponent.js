@@ -118,7 +118,7 @@ const Main = () => {
                 <Drawer.Screen
                     name='About'
                     component={AboutNavigator}
-                    options={{ title: 'About' }}
+                   
                 >
 
                 </Drawer.Screen>
