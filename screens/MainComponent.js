@@ -5,7 +5,7 @@ import DirectoryScreen from './DirectoryScreen';
 const Main = () => {
     const [campsites, setCampsites] = useState(CAMPSITES);
 
-    return <DirectoryScreen campsiates={campsites} />
+    return <DirectoryScreen campsites={campsites} />
 }
 
 export default Main;
