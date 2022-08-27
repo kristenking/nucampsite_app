@@ -9,7 +9,7 @@ const ContactScreen = () => {
                 <Card.Title>
                     Contact Information
                 </Card.Title>
-                <Card.Divider></Card.Divider>
+                <Card.Divider />
                 <Text>1 Nucamp Way</Text>
                 <Text>Settle, WA 98001</Text>
                 <Text style={{ marginBottom: 10 }}>U.S.A.</Text>
