@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { FlatList, StyleSheet, Text, View, Button, Modal } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import RenderCampsite from '../features/campsites/RenderCampsite';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
@@ -8,6 +9,7 @@ const CampsiteInfoScreen = ({ route }) => {
     const comments = useSelector((state) => state.comments);
     const favorites = useSelector((state) => state.favorites);
     const dispatch = useDispatch();
+    const [showModal, setShowModal] = useState(false);
 
     const renderCommentItem = ({ item }) => {
         return (
@@ -22,6 +24,7 @@ const CampsiteInfoScreen = ({ route }) => {
     };
 
     return (
+        <>
         <FlatList
             data={comments.commentsArray.filter(
                 (comment) => comment.campsiteId === campsite.id
@@ -38,11 +41,30 @@ const CampsiteInfoScreen = ({ route }) => {
                         campsite={campsite}
                         isFavorite={favorites.includes(campsite.id)}
                         markFavorite={() => dispatch(toggleFavorite(campsite.id))}
+                        onShowModal={() => setShowModal(!showModal)}
                     />
+                    
                     <Text style={styles.commentsTitle}>Comments</Text>
                 </>
             }
         />
+        <Modal
+                        animationType='slide'
+                        transparent={false}
+                        visible={showModal}
+                        onRequestClose={() => setShowModal(!showModal)}
+                    >
+                        <View modalStyle={styles.modal}>
+                            <View style={{margin: 10}}>
+                                <Button 
+                                    color="#808080"
+                                    title='Cancel'
+                                    onPress={() => setShowModal(!showModal)}>
+                                </Button>
+                            </View>
+                        </View>
+                    </Modal>
+                    </>
     );
 };
 
@@ -60,6 +82,10 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         backgroundColor: '#fff'
+    },
+    modal: {
+        justifyContent: 'center',
+        margin: 20
     }
 });
 
