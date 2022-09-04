@@ -41,7 +41,7 @@ const CampsiteInfoScreen = ({ route }) => {
                     readonly
                     startingValue={5}
                     imageSize={10}
-                    style={{ fontSize: 12, alignItem: 'flex-start', paddingVertical: '5%' }}
+                    style={{ fontSize: 12, alignItems: 'flex-start', paddingVertical: '5%' }}
 
                 />
 
