@@ -22,6 +22,7 @@ import { fetchPromotions } from '../features/promotions/promotionsSlice';
 import { fetchComments } from '../features/comments/commentsSlice';
 import FavoritesScreen from './FavoritesScreen';
 
+
 const Drawer = createDrawerNavigator();
 
 const screenOptions = {
