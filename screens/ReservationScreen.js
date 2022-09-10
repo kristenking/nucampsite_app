@@ -6,7 +6,6 @@ import {
     StyleSheet,
     Switch,
     Button,
-    PanResponder,
     Alert
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -20,6 +19,8 @@ const ReservationScreen = () => {
     const [date, setDate] = useState(new Date());
     const [showCalendar, setShowCalendar] = useState(false);
     // const [showModal, setShowModal] = useState(false);
+
+
 
     const onDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
