@@ -6,7 +6,8 @@ import {
     StyleSheet,
     Switch,
     Button,
-    Modal
+    PanResponder,
+    Alert
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -18,7 +19,7 @@ const ReservationScreen = () => {
     const [hikeIn, setHikeIn] = useState(false);
     const [date, setDate] = useState(new Date());
     const [showCalendar, setShowCalendar] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
 
     const onDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -30,7 +31,23 @@ const ReservationScreen = () => {
         console.log('campers:', campers);
         console.log('hikeIn:', hikeIn);
         console.log('date:', date);
-        setShowModal(!showModal);
+        Alert.alert(
+            'Begin Search?',
+            `Number of Campers: ${campers}\n \nHike-in?  ${hikeIn}\n \nDate: ${date.toLocaleDateString('en-US')}`,
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                    onPress: () => resetForm()
+                },
+                {
+                    text: 'OK',
+                    onPress: () => resetForm()
+                }
+            ],
+            { cancelable: false }
+        )
+        
     };
 
     const resetForm = () => {
@@ -91,19 +108,20 @@ const ReservationScreen = () => {
             )}
             <View style={styles.formRow}>
                 <Button
-                    onPress={() => handleReservation()}
+                    onPress={() => handleReservation()
+                    }
                     title='Search Availability'
                     color='#5637DD'
                     accessibilityLabel='Tap me to search for available campsites to reserve'
                 />
             </View>
-            <Modal
+            {/* <Modal
                 animationType='slide'
                 transparent={false}
                 visible={showModal}
                 onRequestClose={() => setShowModal(!showModal)}
-            >
-                <View style={styles.modal}>
+            > */}
+                {/* <View style={styles.modal}>
                     <Text style={styles.modalTitle}>
                         Search Campsite Reservations
                     </Text>
@@ -118,14 +136,14 @@ const ReservationScreen = () => {
                     </Text>
                     <Button
                         onPress={() => {
-                            setShowModal(!showModal);
+                            
                             resetForm();
                         }}
                         color='#5637DD'
                         title='Close'
                     />
-                </View>
-            </Modal>
+                </View> */}
+            {/* </Modal> */}
             </Animatable.View>
         </ScrollView>
     );
