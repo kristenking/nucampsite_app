@@ -158,7 +158,7 @@ const RegisterTab = () => {
     }
 
     const getImageFromGallery = async () => {
-        const mediaLibraryPermissions = await ImagePicker.requestCameraPermissionsAsync();
+        const mediaLibraryPermissions = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (mediaLibraryPermissions.status === 'granted') {
             const capturedImage = await ImagePicker.launchImageLibraryAsync({
