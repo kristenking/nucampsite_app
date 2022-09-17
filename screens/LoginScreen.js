@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
 import { baseUrl } from '../shared/baseUrl';
 import logo from '../assets/images/logo.png';
+import * as ImageManipulator from "expo-image-manipulator";
+
 
 
 const LoginTab = ({ navigation }) => {
@@ -149,9 +151,28 @@ const RegisterTab = () => {
             });
             if (!capturedImage.cancelled) {
                 console.log(capturedImage);
-                setImageUrl(capturedImage.uri);
+                // setImageUrl(capturedImage.uri);
+                processImage(capturedImage.uri);
             }
         }
+    }
+
+    const processImage = async (imgUri) => {
+
+
+
+        const processedImage =
+            await ImageManipulator.manipulateAsync(
+                imgUri,
+                [{
+                    resize: { width: 400 }
+                }],
+                {
+                    format: ImageManipulator.SaveFormat.PNG
+                }
+            );
+        console.log(processedImage);
+        setImageUrl(processedImage.uri)
     }
 
     return (
